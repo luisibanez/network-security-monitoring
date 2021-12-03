@@ -3,7 +3,9 @@
 #
 #  Concatenate log files into a single file
 #
+#  Usage:  concatenate_logs  zeek/logs_dir  dns
+#
 
-find . -name  ${$1}*  \
- -exec cat {} >> master_{$1}.log \;
+find $1 -name  $2*  \
+ -exec cat {} >> master_$2.log \;
 

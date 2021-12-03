@@ -1,4 +1,9 @@
 #!/bin/bash
+#
+#  Summarize DNS lookups by unique queries
+#
+#  Usage: dns_queries_summary.sh  master_dns.log
+#
 
 ZEEK_CUT=/usr/local/zeek/bin/zeek-cut
 
