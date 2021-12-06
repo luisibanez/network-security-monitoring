@@ -8,6 +8,6 @@
 ZEEK_CUT=/usr/local/zeek/bin/zeek-cut
 
 cat $1 \
-  | ${ZEEK_CUT} -d host uri \
+  | ${ZEEK_CUT} -d host uri username password \
   | sort | uniq -c | sort -g -r
 
