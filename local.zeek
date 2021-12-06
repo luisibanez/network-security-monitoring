@@ -86,6 +86,12 @@ redef digest_salt = "Please change this value.";
 # Detect SHA1 sums in Team Cymru's Malware Hash Registry.
 @load frameworks/files/detect-MHR
 
+# Extract the content of all files
+@load frameworks/files/extract-all-files
+
+# Test all files for Entropy
+@load frameworks/files/entropy-test-all-files
+
 # Extend email alerting to include hostnames
 @load policy/frameworks/notice/extend-email/hostnames
 
