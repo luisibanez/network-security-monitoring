@@ -6,5 +6,5 @@
 #  Usage: decompress_logs.sh  zeek/logs
 #
 
-find $1 -name *.log.gz -exec gunzip {} \;
+find $1 -name '*.log.gz' -exec gunzip --force {} \;
 
