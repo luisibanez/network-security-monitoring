@@ -3,9 +3,12 @@
 #
 #  Concatenate log files into a single file
 #
-#  Usage:  concatenate_logs  zeek/logs_dir  dns
+#  Usage:  concatenate_logs  [LOGS_DIR]
 #
 
-find $1 -name  $2*  \
- -exec cat {} >> master_$2.log \;
-
+for signal in capture conn-summary conn. dns dhcp files http ocsp software ssl stats weird x509
+    do
+        echo "Concatenating $signal ..."
+        find $1 -name  $signal*  \
+            -exec cat {} >> master_$signal.log \;
+    done

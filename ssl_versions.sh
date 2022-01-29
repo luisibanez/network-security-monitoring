@@ -2,12 +2,13 @@
 #
 #  Summarize SSL protocol versions.
 #
-#  Usage: ssl_summary.sh  master_ssl.log
+#  Usage: ssl_summary.sh
 #
 
 ZEEK_CUT=/usr/local/zeek/bin/zeek-cut
 
-cat $1 \
+cat master_ssl.log \
   | ${ZEEK_CUT} -d version next_protocol \
-  | sort | uniq -c | sort -g -r
+  | sort | uniq -c | sort -g -r \
+  >  master_ssl_versions.txt
 

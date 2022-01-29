@@ -2,12 +2,13 @@
 #
 #  Scan for clear passwords in HTTP calls.
 #
-#  Usage: http_passwords.sh  master_http.log
+#  Usage: http_passwords.sh
 #
 
 ZEEK_CUT=/usr/local/zeek/bin/zeek-cut
 
-cat $1 \
-  | ${ZEEK_CUT} -d password \
-  | grep -v '-'
+cat master_http.log \
+  | ${ZEEK_CUT} -d password host \
+  | sort | uniq -c | sort -g -r \
+  >  master_http_passwords.txt
 

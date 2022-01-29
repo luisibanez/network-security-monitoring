@@ -7,7 +7,8 @@
 
 ZEEK_CUT=/usr/local/zeek/bin/zeek-cut
 
-cat $1 \
+cat master_software.log \
   | ${ZEEK_CUT} -d unparsed_version \
-  | sort | uniq -c | sort -g -r
+  | sort | uniq -c | sort -g -r \
+  > master_software_summary.txt
 

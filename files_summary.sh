@@ -2,12 +2,13 @@
 #
 #  Summarize FILES logs including their Entropy.
 #
-#  Usage: files_summary.sh  master_files.log
+#  Usage: files_summary.sh
 #
 
 ZEEK_CUT=/usr/local/zeek/bin/zeek-cut
 
-cat $1 \
+cat master_files.log \
   | ${ZEEK_CUT} -d entropy mime_type filename \
-  | sort -g
+  | sort -g \
+  > master_files_summary.txt
 
