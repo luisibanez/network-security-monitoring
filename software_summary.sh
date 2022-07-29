@@ -7,6 +7,8 @@
 
 ZEEK_CUT=/usr/local/zeek/bin/zeek-cut
 
+echo "Summarizing Software records ..."
+
 cat master_software.log \
   | ${ZEEK_CUT} -d unparsed_version \
   | sort | uniq -c | sort -g -r \

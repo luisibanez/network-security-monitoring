@@ -7,6 +7,8 @@
 
 ZEEK_CUT=/usr/local/zeek/bin/zeek-cut
 
+echo "Summarizing HTTP records ..."
+
 cat master_http.log \
   | ${ZEEK_CUT} -d host uri username password \
   | sort | uniq -c | sort -g -r \

@@ -7,6 +7,8 @@
 
 ZEEK_CUT=/usr/local/zeek/bin/zeek-cut
 
+echo "Summarizing DNS records ..."
+
 cat master_dns.log \
   | ${ZEEK_CUT} -d id.resp_h query \
   | sort | uniq -c | sort -g -r \

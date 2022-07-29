@@ -7,6 +7,8 @@
 
 ZEEK_CUT=/usr/local/zeek/bin/zeek-cut
 
+echo "Summarizing x509 records ..."
+
 cat master_x509.log \
   | ${ZEEK_CUT} -d certificate.issuer san.dns san.email certificate.subject \
   | sort | uniq -c | sort -g -r \

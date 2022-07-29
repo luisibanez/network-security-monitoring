@@ -7,8 +7,10 @@
 
 ZEEK_CUT=/usr/local/zeek/bin/zeek-cut
 
+echo "Summarizing Files records ..."
+
 cat master_files.log \
-  | ${ZEEK_CUT} -d entropy mime_type filename \
-  | sort -g \
+  | ${ZEEK_CUT} -d entropy mime_type filename extracted extrated_size \
+  | sort -g | uniq \
   > master_files_summary.txt
 
