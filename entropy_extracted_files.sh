@@ -21,5 +21,7 @@ find $1 -name 'extract*'      \
    -exec ent -t  {} \;        \
    |  awk '/Correlation$/ { gsub(/0\,File\-bytes.*Serial\-Correlation/,","); printf("%s", $0); next } 1'   \
    |  sort -t',' -k 4    \
+   |  cut -d',' -f1,3,4 \
+   |  tr ',' '\t'       \
    |  tee  entropy.csv
 
