@@ -16,10 +16,16 @@ extract_issuer () {
     SUBJECT=$(openssl x509 -in  $1 -subject -noout | sed 's/subject=//');
     ISSUER=$( openssl x509 -in  $1 -issuer  -noout | sed 's/issuer=//');
     if [[ "${SUBJECT}" == "${ISSUER}" ]]; then
-      echo -n "$1: ";
-      echo "Probably self signed";
+      echo "";
+      echo "$1: Probably self signed";
       echo $SUBJECT;
       echo $ISSUER;
+      AUTHORITY_KEY_IDENTIFIER=$(openssl x509 -in $1 -noout -text | grep -A1 'Authority Key Identifier' | tail -n 1);
+      SUBJECT_KEY_IDENTIFIER=$(  openssl x509 -in $1 -noout -text | grep -A1 'Subject Key Identifier'   | tail -n 1);
+      if [[ "${AUTHORITY_KEY_IDENTIFIER}" == "${SUBJECT_KEY_IDENTIFIER}" ]]; then
+        echo "AUTH KEY IDENTIFIER:  ${AUTHORITY_KEY_IDENTIFIER}";
+        echo "SUBJ KEY IDENTIFIER:  ${SUBJECT_KEY_IDENTIFIER}";
+      fi
     fi
   fi
 }
